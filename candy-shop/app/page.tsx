@@ -1,33 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import Swiper from "swiper";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 
 export default function HomePage() {
-  useEffect(() => {
-    new Swiper(".swiper", {
-      modules: [Pagination, Navigation, Autoplay],
-      loop: true,
-      autoplay: { delay: 2500, disableOnInteraction: false },
-      pagination: { el: ".swiper-pagination", clickable: true },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints: {
-        640: { slidesPerView: 1.5, spaceBetween: 16 },
-        768: { slidesPerView: 2, spaceBetween: 20 },
-        1024: { slidesPerView: 3, spaceBetween: 24 },
-      },
-    });
-  }, []);
-
   return (
     <>
       <Header />
