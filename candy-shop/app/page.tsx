@@ -242,7 +242,7 @@ export default function HomePage() {
       </section>
 
       {/* BLOG */}
-      <section id="blog" className="flex flex-col items-center py-16">
+      <section id="blog" className="flex flex-col items-center py-16 bg-white">
         {/* Intro Block */}
         <div className="w-full max-w-4xl rounded-3xl p-8 sm:p-10 md:p-12 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-rose-600 mb-4 tracking-tight">

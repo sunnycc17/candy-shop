@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-linear-to-b from-red-900 via-rose-800 to-red-950 text-[#eceaea]">{children}</body>
+      <body className="antialiased  text-[#eceaea]">{children}</body>
     </html>
   );
 }
