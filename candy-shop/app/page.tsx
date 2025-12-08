@@ -31,71 +31,144 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <section className="flex flex-col justify-center items-center pt-36 py-12 my-12">
-        <div className="w-full max-w-7xl px-4 sm:px-6">
-          {/* INTRO */}
-          <div className="text-center">
-            <h1 className="uppercase text-rose-600 font-bold text-2xl sm:text-3xl mb-4">
-              Soft as a Cloud Sweet as a Dream
+      <section
+        className="relative min-h-screen bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1652284920238-1ecce9ffcdc9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        }}
+      >
+        {/* overlay */}
+        <div className="absolute inset-0 bg-rose-900/50 z-0"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center h-full justify-center md:justify-between py-20">
+          {/* Text content */}
+          <div className="text-center md:text-left md:max-w-lg py-24">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
+              Handmade Sweets <br /> Crafted Fresh
             </h1>
-            <p className="text-gray-700/80 sm:text-base md:text-lg font-medium">
-              Indulge in sweetness crafted with love
+            <p className="mt-4 text-lg sm:text-xl text-gray-100 drop-shadow-sm">
+              Marshmallows, chocolates & candies made in small batches with real
+              ingredients.
             </p>
-            <p className="text-gray-700/80 sm:text-base md:text-lg font-medium pb-10">
-              From fluffy marshmallows to rich chocolates, every treat brightens
-              your day.
-            </p>
-          </div>
 
-          <div className="mt-8 flex justify-center">
-            <a
-              href="/shop"
-              className="relative inline-block font-bold text-white px-12 py-4 rounded-full bg-linear-to-b from-[#A80054] via-[#FF1E66] to-[#FF5C99] shadow-lg transition duration-300 hover:scale-105"
-            >
-              Shop Now
-            </a>
-          </div>
-
-          {/* SWIPER */}
-          <div className="swiper w-full mt-12 z-10">
-            <div className="swiper-wrapper">
-              {[
-                "https://images.pexels.com/photos/6798343/pexels-photo-6798343.jpeg",
-                "https://images.pexels.com/photos/5469041/pexels-photo-5469041.jpeg",
-                "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg",
-                "https://images.pexels.com/photos/827513/pexels-photo-827513.jpeg",
-                "https://images.pexels.com/photos/1693027/pexels-photo-1693027.jpeg",
-                "https://images.pexels.com/photos/5386671/pexels-photo-5386671.jpeg",
-                "https://images.pexels.com/photos/4161223/pexels-photo-4161223.jpeg",
-              ].map((img, i) => (
-                <div key={i} className="swiper-slide">
-                  <img
-                    src={img}
-                    className="w-full h-56 sm:h-64 md:h-72 object-cover"
-                  />
-                </div>
-              ))}
+            <div className="mt-8 flex justify-center md:justify-start gap-4">
+              <a
+                href="/shop"
+                className="px-8 py-4 rounded-full font-semibold bg-linear-to-r from-rose-500 to-rose-700 text-white text-lg shadow-lg hover:scale-105 transition"
+              >
+                Shop Now
+              </a>
+              <a
+                href="#features"
+                className="px-6 py-4 rounded-full font-semibold border border-white text-white text-lg hover:bg-white hover:text-rose-700 transition"
+              >
+                Learn More
+              </a>
             </div>
-
-            <div className="swiper-pagination mt-4"></div>
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
           </div>
         </div>
       </section>
 
-      {/* BEST SELLERS */}
-      <section className="w-full py-16 bg-rose-300">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-          <h1 className="uppercase font-bold text-2xl sm:text-3xl mb-12 text-center text-rose-600">
-            Best Sellers
-          </h1>
-          <div id="bestSellers" className="w-full" />
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-center text-2xl sm:text-3xl font-semibold text-rose-700">
+            Why People Love Us
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+            <div className="text-center">
+              <div className="text-3xl text-rose-500 mb-3">🍫</div>
+              <h3 className="text-lg font-semibold mb-2">
+                Premium Ingredients
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Crafted with real cocoa, fruit, and natural flavors.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="text-3xl text-rose-500 mb-3">🎁</div>
+              <h3 className="text-lg font-semibold mb-2">
+                Gift-Ready Packaging
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Beautifully packed—perfect for birthdays and surprises.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="text-3xl text-rose-500 mb-3">🚚</div>
+              <h3 className="text-lg font-semibold mb-2">Fast Shipping</h3>
+              <p className="text-gray-600 text-sm">
+                Orders placed before noon dispatch the same day.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="text-3xl text-rose-500 mb-3">⭐</div>
+              <h3 className="text-lg font-semibold mb-2">Loved by Thousands</h3>
+              <p className="text-gray-600 text-sm">
+                Rated 4.9 by customers just like you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-rose-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-center text-2xl sm:text-3xl font-semibold text-rose-700">
+            A Taste of Our Favorites
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {[
+              {
+                img: "https://images.pexels.com/photos/5469041/pexels-photo-5469041.jpeg",
+                title: "Soft Vanilla Marshmallow",
+              },
+              {
+                img: "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg",
+                title: "Dark Chocolate Drops",
+              },
+              {
+                img: "https://images.pexels.com/photos/6798343/pexels-photo-6798343.jpeg",
+                title: "Fruit Sugar Pop Squares",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-2xl shadow-md hover:shadow-lg transition overflow-hidden"
+              >
+                <img src={item.img} className="w-full h-56 object-cover" />
+                <div className="p-4 text-center">
+                  <h3 className="font-semibold text-lg text-rose-700">
+                    {item.title}
+                  </h3>
+                  <a
+                    href="/shop"
+                    className="block mt-2 text-sm font-semibold text-rose-600 hover:underline"
+                  >
+                    See More →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <a
+              href="/shop"
+              className="inline-block px-10 py-3 rounded-full font-semibold bg-rose-600 text-white hover:scale-105 transition"
+            >
+              Explore Full Collection
+            </a>
+          </div>
         </div>
       </section>
 
       {/* BLOG */}
-
       <section id="blog" className="flex flex-col items-center py-16">
         {/* Intro Block */}
         <div className="w-full max-w-4xl rounded-3xl p-8 sm:p-10 md:p-12 text-center">

@@ -1,163 +1,144 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import clsx from "clsx";
+import { Sling as Hamburger } from "hamburger-react";
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const cartCount = 0; // Replace with your cart state
+// Navigation items with hrefs and optional icons for mobile sidebar
+interface NavItem {
+  label: string;
+  href: string;
+  icon?: React.ReactNode;
+}
+
+const navItems: NavItem[] = [
+  {
+    label: "Home",
+    href: "/",
+    icon: (
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 12l9-9 9 9v9a3 3 0 01-3 3H6a3 3 0 01-3-3v-9z"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "About",
+    href: "/about",
+    icon: (
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    icon: (
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M16 12v.01M12 12v.01M8 12v.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "FAQ",
+    href: "/faq",
+    icon: (
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M8 10h.01M12 14h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"
+        />
+      </svg>
+    ),
+  },
+];
+
+const Header: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const cartCount = 0;
+
+  const hamburgerPosition = "absolute top-6 right-4";
 
   return (
-    <header
-      className="header fixed top-0 z-9999` magenta w-full border-b border-rose-400 backdrop-blur-sm"
-      aria-label="Main site header"
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8 font-sans">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Link id="logo" href="/" className="flex items-center gap-1 sm:gap-2">
-            <h1 className="font-extrabold italic letters text-sm sm:text-xl uppercase tracking-wider">
-              Sunny Delights
-            </h1>
-          </Link>
-        </div>
-
-        {/* Desktop Search */}
-        <div className="hidden sm:flex flex-1 items-center justify-center mx-4 relative">
-          <div className="relative w-full max-w-md">
-            <label htmlFor="searchbox" className="sr-only">
-              Search candies
-            </label>
-            <input
-              id="searchbox"
-              type="text"
-              placeholder="Search candies..."
-              className="w-full pl-10 pr-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-white bg-rose-400/60 border border-white/10"
-            />
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="h-5 w-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8 font-medium letters relative">
-          {[
-            { href: "/", label: "Home" },
-            { href: "/about", label: "About" },
-            { href: "/contact", label: "Contact" },
-            { href: "/faq", label: "FAQ" },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative px-3 py-1"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-rose-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+    <header className="fixed top-0 z-50 w-full">
+      {/* Navbar */}
+      <div className="backdrop-blur-sm">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8 font-sans relative">
+          {/* Logo */}
+          <div className="flex items-center mr-12">
+            <Link href="/" className="flex items-center gap-3">
+              <h1 className="font-semibold italic tracking-wide text-xl sm:text-2xl text-white">
+                Sunny Delights
+              </h1>
             </Link>
-          ))}
-        </div>
-
-        {/* Cart + Mobile Hamburger */}
-        <div className="flex items-center">
-          <Link
-            id="cart"
-            href="/pages/checkout"
-            className="relative mx-1 lg:ml-9 letters smooth-bounce"
-          >
-            <i className="ri-shopping-basket-2-fill text-xl sm:text-2xl"></i>
-            <span className="absolute -top-1.5 -right-2.5 sm:-top-2 sm:-right-3.5 text-[0.55rem] sm:text-xs font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
-              {cartCount}
-            </span>
-          </Link>
-
-          <button
-            type="button"
-            className="lg:hidden inline-flex items-center justify-center rounded-md p-1 text-white"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Sidebar */}
-      {open && (
-        <aside
-          className="fixed inset-y-0 right-0 w-3/4 magenta backdrop-blur-sm text-white flex flex-col h-screen overflow-hidden border-l border-rose-400 font-sans"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex items-center justify-end px-6 pt-6">
-            <button
-              type="button"
-              className="rounded-md p-2.5"
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
           </div>
 
-          {/* Mobile Search */}
-          <div className="mt-4 border-t border-white/20 pt-4 px-4">
-            <label htmlFor="mobile-searchbox" className="sr-only">
-              Search candies
-            </label>
-            <div className="relative">
+          {/* Desktop nav links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-white font-medium px-3 py-1 rounded-lg hover:bg-white/10 transition-colors duration-300"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right side: search + cart + hamburger */}
+          <div className="flex items-center gap-6 ml-auto">
+            {/* Search */}
+            <div className="hidden sm:flex relative">
               <input
-                id="mobile-searchbox"
                 type="text"
                 placeholder="Search candies..."
-                className="w-full pl-10 pr-4 py-2 rounded-full focus:outline-none focus:ring-2 text-xs focus:ring-white text-white placeholder-white bg-rose-400/60 border border-white/10"
+                className="w-96 pl-12 pr-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-rose-400 transition-shadow duration-300 shadow-sm hover:shadow-md"
               />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -166,32 +147,84 @@ export default function Header() {
                     d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
                   />
                 </svg>
-              </div>
+              </span>
+            </div>
+
+            {/* Cart */}
+            <Link href="/pages/checkout" className="relative text-white">
+              <i className="ri-shopping-basket-2-fill text-2xl"></i>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center bg-rose-500 text-white">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Hamburger */}
+            <div className="lg:hidden">
+              <Hamburger toggled={open} toggle={setOpen} size={24} />
             </div>
           </div>
+        </nav>
+      </div>
 
-          {/* Mobile Links */}
-          <nav className="mt-6 px-6 pb-6 flex flex-col justify-start space-y-3">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/about", label: "About" },
-              { href: "/contact", label: "Contact" },
-              { href: "/faq", label: "FAQ" },
-              { href: "/events", label: "Events" },
-              { href: "/jobs", label: "Jobs" },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 font-medium hover:bg-rose-400/60 rounded"
+      {/* Overlay */}
+      <div
+        className={clsx(
+          "fixed inset-0 bg-black/40 z-20 transition-opacity duration-500 lg:hidden",
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Mobile sidebar */}
+      <div
+        className={clsx(
+          "lg:hidden fixed top-0 right-0 h-full z-30 w-72 sm:max-w-sm overflow-hidden px-6 py-8 sidebar shadow-2xl transition-transform duration-500 ease-in-out rounded-l-4xl bg-linear-to-b from-red-900 via-rose-800 to-red-950",
+          open ? "translate-x-0" : "translate-x-full"
+        )}
+      >
+        {/* Hamburger inside sidebar */}
+        <div className={hamburgerPosition}>
+          <Hamburger
+            toggled={open}
+            toggle={setOpen}
+            size={28}
+            duration={0.5}
+            label="Close menu"
+            color="#fff"
+          />
+        </div>
+
+        <div className="flow-root mt-24">
+          <div className="text-left">
+            {navItems.map((item, index) => (
+              <button
+                key={item.href}
                 onClick={() => setOpen(false)}
+                className={clsx(
+                  "flex items-center gap-4 w-full px-6 py-5 text-lg sm:text-xl font-semibold text-white text-left rounded-xl transform transition duration-500",
+                  open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+                )}
+                style={{ transitionDelay: `${index * 120}ms` }}
               >
-                {link.label}
-              </Link>
+                {item.icon && <span>{item.icon}</span>}
+                {item.label}
+                <div className="absolute left-6 bottom-0 h-px w-[calc(100%-2.5rem)] bg-white/20 rounded-full"></div>
+              </button>
             ))}
-          </nav>
-        </aside>
-      )}
+          </div>
+        </div>
+
+        {/* Sidebar footer */}
+        <div className="absolute bottom-6 left-6 text-white/70 text-sm sm:text-base">
+          &copy; 2025 Sunny Delights
+        </div>
+      </div>
     </header>
   );
-}
+};
+
+export default Header;
