@@ -38,10 +38,10 @@ export default function HomePage() {
             "url('https://images.unsplash.com/photo-1652284920238-1ecce9ffcdc9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         }}
       >
-        {/* overlay */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-rose-900/50 z-0"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center h-full justify-center md:justify-between py-20">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center h-full justify-center md:justify-between py-20">
           {/* Text content */}
           <div className="text-center md:text-left md:max-w-lg py-24">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
@@ -68,50 +68,123 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Wavy SVG divider with faint white */}
+        <div className="absolute bottom-0 w-full overflow-hidden leading-0`">
+          <svg
+            className="relative block w-full h-32"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"
+              fill="rgb(255, 248, 250)" // faint white
+            />
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-center text-2xl sm:text-3xl font-semibold text-rose-700">
+          {/* Section Heading */}
+          <h2 className="text-center text-3xl sm:text-4xl font-bold text-rose-500 mb-16">
             Why People Love Us
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            <div className="text-center">
-              <div className="text-3xl text-rose-500 mb-3">🍫</div>
-              <h3 className="text-lg font-semibold mb-2">
-                Premium Ingredients
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Crafted with real cocoa, fruit, and natural flavors.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl text-rose-500 mb-3">🎁</div>
-              <h3 className="text-lg font-semibold mb-2">
-                Gift-Ready Packaging
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Beautifully packed—perfect for birthdays and surprises.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl text-rose-500 mb-3">🚚</div>
-              <h3 className="text-lg font-semibold mb-2">Fast Shipping</h3>
-              <p className="text-gray-600 text-sm">
-                Orders placed before noon dispatch the same day.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl text-rose-500 mb-3">⭐</div>
-              <h3 className="text-lg font-semibold mb-2">Loved by Thousands</h3>
-              <p className="text-gray-600 text-sm">
-                Rated 4.9 by customers just like you.
-              </p>
-            </div>
+          {/* Grid of features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {[
+              {
+                title: "Premium Ingredients",
+                desc: "Crafted with real cocoa, fruit, and natural flavors.",
+                icon: (
+                  <svg
+                    className="h-12 w-12 text-rose-400 mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v18m9-9H3"
+                    />
+                  </svg>
+                ),
+              },
+              {
+                title: "Gift-Ready Packaging",
+                desc: "Beautifully packed—perfect for birthdays and surprises.",
+                icon: (
+                  <svg
+                    className="h-12 w-12 text-rose-400 mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 12.79V21H3V12.79l9 6.21 9-6.21zM12 3L3 9v3h18V9l-9-6z"
+                    />
+                  </svg>
+                ),
+              },
+              {
+                title: "Fast Shipping",
+                desc: "Orders placed before noon dispatch the same day.",
+                icon: (
+                  <svg
+                    className="h-12 w-12 text-rose-400 mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 3h18v6H3V3zm0 12h18v6H3v-6z"
+                    />
+                  </svg>
+                ),
+              },
+              {
+                title: "Loved by Thousands",
+                desc: "Rated 4.9 by customers just like you.",
+                icon: (
+                  <svg
+                    className="h-12 w-12 text-rose-400 mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 17l-5 3 1-5-4-4 5-1L12 3l2 5 5 1-4 4 1 5-5-3z"
+                    />
+                  </svg>
+                ),
+              },
+            ].map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-2xl p-6 flex flex-col items-center text-center"
+              >
+                {feature.icon}
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-rose-500 font-medium text-balance ">
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

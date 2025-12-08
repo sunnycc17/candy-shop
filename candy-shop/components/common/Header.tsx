@@ -112,7 +112,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 ml-16">
             {navItems.map((item) => (
               <Link
                 key={item.href}

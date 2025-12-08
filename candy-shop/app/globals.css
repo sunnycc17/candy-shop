@@ -1,23 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #7b0b1fb9;
+  --bg: rgb(255, 248, 250);
   --highlight: #d6336c;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--bg);
-}
-
-.footer {
-  background-color: var(--bg);
-}
-.header {
-  background-color: var(--bg);
-}
-.sidebar {
-  background-color: #aa1c36;
 }
 
 .swiper-pagination-bullet {
