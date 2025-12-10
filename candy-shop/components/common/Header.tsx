@@ -106,7 +106,7 @@ const Header: React.FC = () => {
           <div className="flex items-center mr-12">
             <Link href="/" className="flex items-center gap-3">
               <h1 className="font-semibold italic tracking-wide text-xl sm:text-2xl text-white">
-                Sunny Delights
+                Sweet Delights
               </h1>
             </Link>
           </div>
